@@ -14,7 +14,7 @@ const CategoriesProvider = ({children}) => {
     const getCategories = async () => {
         try {
             const categoriesData = await getCategoriesService();
-            setCategories(data);
+            setCategories(categoriesData);
         } catch (error) {
             console.log(error);
         }
@@ -31,6 +31,5 @@ CategoriesProvider.propTypes = {
     children: propTypes.node.isRequired
 }
 
-export { CategoriesProvider };
+export { CategoriesProvider, CategoriesContext};
 
-export default CategoriesContext;

@@ -1,5 +1,5 @@
-import { useState , useEffect , useContext} from 'react';
-import { propTypes } from 'prop-types';
+import { useState , useEffect , createContext} from 'react';
+import propTypes from 'prop-types';
 import { filterDrinksService , getRecipeService } from '../services/drinks.service';
 
 const DrinksContext = createContext();
@@ -7,7 +7,7 @@ const DrinksContext = createContext();
 const DrinksProvider = ({children}) => {
     const [drinks, setDrinks] = useState([]);
     const [modal, setModal] = useState(false);
-    const {drinkId, setDrinkId} = useState(null);
+    const [drinkId, setDrinkId] = useState(null);
     const [recipe, setRecipe] = useState({});
     const [loading, setLoading] = useState(false);
 
@@ -34,11 +34,18 @@ const DrinksProvider = ({children}) => {
         }
     }
 
-    async function getDrinks(data) {
+    async function getDrink(data) {
         try {
             setLoading(true);
             const drinksData = await filterDrinksService(data.name , data.category);
-            setDrinks(drinksData);
+            const drinksWithPrice = drinksData.map((drink) =>{
+                return {
+                    ...drink,
+                    price: Math.floor(Math.random() * 1001),
+                    
+                }
+            })
+            setDrinks(drinksWithPrice);
         } catch (error) {
             console.log(error);
         }
@@ -59,11 +66,11 @@ const DrinksProvider = ({children}) => {
         loading,
         handleModalClick,
         handleDrinkIdClick,
-        getDrinks
+        getDrink
     }
 
     return (
-        <DrinksContext.Provider value={{contextValues}}>
+        <DrinksContext.Provider value={contextValues}>
             {children}
         </DrinksContext.Provider>
     )
@@ -73,4 +80,4 @@ DrinksProvider.propTypes = {
     children: propTypes.node.isRequired
 }
 
-export { DrinksProvider , DrinksContext};
+export {DrinksContext, DrinksProvider};
