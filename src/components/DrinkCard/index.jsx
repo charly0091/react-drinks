@@ -13,7 +13,7 @@ export default function DrinkCard({ drink }) {
 
     return (
         <Col md={6} ld={3}>
-            <Card className="mb-4" shadow-sm>
+            <Card className="mb-4 shadow-sm">
                 <Card.Img variant="top" src={drink.strDrinkThumb} alt={`Imagen de ${drink.strDrink}`} />
                 <Card.Body>
                     <Card.Title>{drink.strDrink}</Card.Title>

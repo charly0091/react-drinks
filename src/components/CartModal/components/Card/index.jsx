@@ -1,17 +1,18 @@
-import PropTypes from "prop-types"
-import styles from "./cardModal.module.css"
-import { useCart } from "../../../../hooks/useCart"
+import PropTypes from 'prop-types';
+import styles from "./CardModal.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCart } from "../../../../hooks/useCart"
 
-export function  ModalCard ({ drink }) {
+export function ModalCard ({ drink }) {
 
-    const {removeOneFromCart, removeAllFromCart, addToCart} = useCart();
+    const { addToCart, removeOneFromCart, removeAllFromCart } = useCart()
+
 
     return (
         <article key={drink.idDrink} className={styles.card}>
             <img src={drink.strDrinkThumb} alt="" />
-            <span>{drink.strDrink}</span>
+            <span className={styles.ellipsis2}>{drink.strDrink}</span>
             <span>{drink.price}</span>
             <div className={styles.counter}>
                 <button onClick={() => removeOneFromCart(drink.idDrink)}>

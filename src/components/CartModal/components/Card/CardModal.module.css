@@ -1,6 +1,9 @@
 .card {
     display: flex;
-    justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: thin solid rgb(158, 31, 126);
+  padding: 0.5rem;
 }
 
 .card img {
@@ -13,12 +16,16 @@
 .card span {
     display: inline-block;
     padding: 8px;
+    max-height: 100px;
+    font-size: 0.9rem;
 }
 
 .card .counter {
     border: thin solid grey;
     border-radius: 4px;
-    padding: 4px;
+    padding: 2px;
+    margin-right: 0.5rem;
+    width: 30px;
 }
 
 .card .counter button {
@@ -35,4 +42,20 @@
     color: white;
 }
 
+.card .iconTrash {
+    color: rgb(158, 31, 126);
+    cursor: pointer;
+}
 
+.ellipsis2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
+
+@media (min-width: 420px) {
+    .card .counter {
+        width: 80px;
+    }
+}
